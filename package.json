@@ -1,0 +1,16 @@
+{
+  "name": "unspoofy",
+  "version": "1.0.0",
+  "description": "Unpacks Spotify playlists into CSV",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yuzupup",
+  "license": "WTFPL",
+  "devDependencies": {
+    "axios": "^0.26.0",
+    "node-html-parser": "^5.2.0"
+  },
+  "type" : "module"
+}
