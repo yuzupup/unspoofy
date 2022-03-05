@@ -1,5 +1,6 @@
 import Track from './Track.js';
 
+/** Represents an unordered collection of tracks */
 class TrackCollection
 {
     constructor()

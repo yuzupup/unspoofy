@@ -2,6 +2,7 @@ import { parse } from 'node-html-parser';
 import axios from 'axios';
 import TrackCollection from './TrackCollection.js';
 
+/** Support input types for this source */
 const InputType =
 {
     PLAYLIST_ID: "PlaylistID",
@@ -9,17 +10,22 @@ const InputType =
     UNSUPPORTED: "UNSUPPORTED"
 }
 
+/** Builds a TrackCollection from a Spotify playlist */
 class SpotifyTracksSource
 {
-    async GetTracks(source)
+    /**
+     * Returns a TrackCollection for the provided Spotify playlist.
+     * Source can either be a playlist ID or playlist URL
+     */
+    async GetTrackCollectionFromPlaylist(source)
     {
         let inputType = this.#DetermineInputType(source);
         switch(inputType)
         {
             case InputType.PLAYLIST_ID:
-                return await this.#GetTracksUsingPlaylistID(source);
+                return await this.#GetTrackCollectionUsingPlaylistID(source);
             case InputType.URL:
-                return await this.#GetTracksUsingURL(source);
+                return await this.#GetTrackCollectionUsingURL(source);
         }
         throw new Error("Provided source could not be turned into a playlist URL. Please pass either an URL or Spotify playlist ID.");
     }
@@ -39,12 +45,12 @@ class SpotifyTracksSource
         return InputType.PLAYLIST_ID;
     }
 
-    async #GetTracksUsingPlaylistID(playlistID)
+    async #GetTrackCollectionUsingPlaylistID(playlistID)
     {
-        return await this.GetTracksUsingURL(`https://open.spotify.com/playlist/${playlistId}`);
+        return await this.GetTrackCollectionUsingURL(`https://open.spotify.com/playlist/${playlistId}`);
     }
 
-    async #GetTracksUsingURL(url)
+    async #GetTrackCollectionUsingURL(url)
     {
         let res = await axios.get(url);
         let trackCollection = new TrackCollection();

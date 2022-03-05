@@ -1,3 +1,4 @@
+/** Represents a single track of music */
 class Track
 {
     constructor(artist, title)
