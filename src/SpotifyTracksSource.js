@@ -61,7 +61,7 @@ class SpotifyTracksSource
         {
             let anchors = el.querySelectorAll('a');
             let track = null;
-            let artist = null;
+            let artists = [];
 
             anchors.forEach((anchor) =>
             {
@@ -72,13 +72,13 @@ class SpotifyTracksSource
                 }
                 if(href.includes("artist"))
                 {
-                    artist = anchor.innerHTML;
+                    artists.push(anchor.innerHTML);
                 }
             });
 
-            if(track !== null && artist !== null)
+            if(track !== null && artists.length > 0)
             {
-                trackCollection.AddTrack(artist, track);
+                trackCollection.AddTrack(artists.join(', '), track);
             }
 
         });

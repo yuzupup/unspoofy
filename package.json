@@ -1,20 +1,25 @@
 {
   "name": "unspoofy",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Command line for retrieving and parsing Spotify playlists",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-      "type": "git",
-      "url": "https://github.com/yuzupup/unspoofy.git"
+    "type": "git",
+    "url": "https://github.com/yuzupup/unspoofy.git"
   },
   "author": "yuzupup (https://yuzupup.codes)",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.26.0",
+    "minimist": "^1.2.5",
     "node-html-parser": "^5.2.0"
   },
-  "type" : "module"
+  "type": "module",
+  "preferGlobal": true,
+  "bin": {
+    "unspoofy": "index.js"
+  }
 }
