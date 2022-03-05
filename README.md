@@ -1,5 +1,5 @@
 # unspoofy
-Command line for retrieving and parsing Spotify playlists
+Command line utility written in Node for retrieving and parsing Spotify playlists
 
 # Usage
 `>unspoofy <source>`
