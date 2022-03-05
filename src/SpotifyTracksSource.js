@@ -1,6 +1,6 @@
 import { parse } from 'node-html-parser';
 import axios from 'axios';
-import Track from './Track.js';
+import TrackCollection from './TrackCollection.js';
 
 const InputType =
 {
@@ -46,9 +46,9 @@ class SpotifyTracksSource
 
     async #GetTracksUsingURL(url)
     {
-        let res = await axios.get(url)
+        let res = await axios.get(url);
+        let trackCollection = new TrackCollection();
         const htmlRoot = parse(res.data);
-        let tracks = [];
 
         let trackElements = htmlRoot.querySelectorAll('[data-testid=track-row]');
         trackElements.forEach((el) =>
@@ -72,12 +72,12 @@ class SpotifyTracksSource
 
             if(track !== null && artist !== null)
             {
-                tracks.push(new Track(artist, track));
+                trackCollection.AddTrack(artist, track);
             }
 
         });
 
-        return tracks;
+        return trackCollection;
     }
 }
 
